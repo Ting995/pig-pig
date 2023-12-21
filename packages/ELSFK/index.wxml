@@ -1,2 +1,25 @@
 <!-- 俄罗斯方块 -->
-111
+<view class="text-center h40">俄罗斯方块</view>
+<view class="fk-main">
+    <view class="flex flex-wrap">
+        <view class="flex">
+            <view class="fk-item color-red"></view>
+            <view class="fk-item color-green"></view>
+            <view class="fk-item color-blue"></view>
+            <view class="fk-item color-yellow"></view>
+        </view>
+        <view class="fk-item color-kong"></view>
+        <view class="flex">
+            <view class="fk-item color-green"></view>
+            <view class="fk-item color-red"></view>
+            <view class="fk-item color-blue"></view>
+        </view>
+        <view class="flex">
+            <view class="fk-item color-green"></view>
+            <view class="fk-item color-blue"></view>
+        </view>
+        <view class="flex">
+            <view class="fk-item color-green"></view>
+        </view>
+    </view>
+</view>

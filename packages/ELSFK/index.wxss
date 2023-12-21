@@ -1,1 +1,43 @@
 /* packages/ELSFK/index.wxss */
+view{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.h40{
+    height: 40rpx;
+}
+.fk-main{
+    margin: 0 auto;
+    width: 644rpx;
+    height: 800rpx;
+    background: skyblue;
+    border: 1px solid blue;
+}
+.fk-item{
+    width: 80rpx;
+    height: 80rpx;
+}
+.color-red{
+    border: 1px solid red;
+    background: red;
+    box-shadow: 0 0 20rpx inset rgb(197, 0, 0);
+}
+.color-green{
+    border: 1px solid green;
+    background: rgb(0, 255, 0);
+    box-shadow: 0 0 20rpx inset rgb(0, 158, 0);
+}
+.color-blue{
+    border: 1px solid blue;
+    background: blue;
+    box-shadow: 0 0 20rpx inset rgb(0, 0, 150);
+}
+.color-yellow{
+    border: 1px solid yellow;
+    background: yellow;
+    box-shadow: 0 0 20rpx inset rgb(148, 148, 0);
+}
+.color-kong{
+    background: transparent;
+}
