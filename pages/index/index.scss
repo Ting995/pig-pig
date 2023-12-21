@@ -1,0 +1,204 @@
+// 使用$加变量名定义变量与值(可以把变量赋值给另一个变量)
+$bgColor:pink;
+$boxWidth:400rpx;
+// $boxHeight:400rpx;
+$boxHeight:$boxWidth;
+$w:width;
+
+// 使用变量
+// .box{
+//   width:$boxWidth;
+//   height:$boxHeight;
+//   background:$bgColor;
+//   padding: 20rpx;
+//   .box-son{
+//     background: green;
+//   }
+// }
+
+.box {
+  $bgColor: #999999;
+  background: $bgColor;
+  $boxWidth: 800rpx !global;
+  $w: $boxWidth;
+  height: $boxHeight;
+
+  .box-son {
+    background: $bgColor
+  }
+}
+
+.box2 {
+  background: $bgColor;
+  $w: $boxWidth;
+  height: $boxHeight;
+}
+
+@mixin important-text {
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  border: 1px solid blue;
+}
+
+@mixin center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.box3 {
+  width: 300rpx;
+  height: 300rpx;
+  background-color: red;
+  @include center;
+
+  .box3-son {
+    width: 100rpx;
+    height: 100rpx;
+    background: skyblue;
+    @include center;
+  }
+}
+
+.p-relative {
+  position: relative;
+}
+
+@mixin whc($w:200rpx, $h:200rpx, $c:red) {
+  width: $w;
+  height: $h;
+  background: $c;
+}
+
+.box4 {
+  position: relative;
+  @include whc(300rpx, 300rpx, #cae787);
+
+  .box4-son {
+    @include whc($c:#cd7aee);
+    @include center;
+  }
+}
+
+@mixin animation($name, $time, $args...) {
+  transition: $name $time $args;
+}
+
+.box5 {
+  width: 400rpx;
+  height: 400rpx;
+  background: tomato;
+  @include animation(all, 1s, linear, 0s);
+}
+
+.box5:hover {
+  width: 400rpx;
+  height: 400rpx;
+  background: turquoise;
+}
+
+// 自定义函数
+@function square($num) {
+  @return $num*$num+rpx
+}
+
+.box6 {
+  width: square(20);
+  height: 300rpx;
+  background: mix(pink, skyblue);
+}
+
+.box7 {
+  width: 400rpx;
+  height: 400rpx;
+  background: pink;
+
+  &:hover {
+    background: paleturquoise;
+  }
+
+  .box7-son {
+    width: 200rpx;
+    height: 200rpx;
+    background: orangered;
+  }
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.box8 {
+  width: 400rpx;
+  height: 400rpx;
+  background: rgb(241, 195, 241);
+  position: relative;
+
+  .box8-son {
+    @extend .center;
+    width: 200rpx;
+    height: 200rpx;
+    background: powderblue;
+  }
+}
+
+@mixin triangle($dir, $width, $color) {
+  width: 0;
+  height: 0;
+  border-width: $width;
+  border-style: solid solid solid solid;
+
+  @if($dir==up) {
+    border-color: transparent transparent $color transparent;
+  }
+
+  @else if($dir==down) {
+    border-color: transparent $color transparent transparent;
+  }
+
+  @else if($dir==left) {
+    border-color: transparent $color transparent transparent;
+  }
+
+  @else if($dir==right) {
+    border-color: transparent transparent transparent $color;
+  }
+}
+
+.box9 {
+  @include triangle(up, 50rpx, pink)
+}
+
+.box10 {
+  @include triangle(down, 50rpx, rgb(247, 110, 76))
+}
+
+.box11 {
+  @include triangle(left, 50rpx, rgb(76, 179, 247))
+}
+
+.box12 {
+  @include triangle(right, 50rpx, rgb(238, 91, 98))
+}
+
+.box13 {
+  .li {
+    background: turquoise;
+    border: 2rpx solid #000;
+    // @for $i from 5 through 8{
+    // @for $i from 5 to 8{
+    $i: 5;
+
+    @while($i<=8) {
+      &:nth-child(#{$i}) {
+        background: rgb(248, 223, 176);
+        $i: $i+1
+      }
+    }
+  }
+}

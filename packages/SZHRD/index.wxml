@@ -1,0 +1,7 @@
+<!-- 华容道 -->
+<view class="game-area">
+  <view wx:for="{{blocks}}" wx:key="index" class="game-block" style="--left:{{item.x+'rpx'}};--top:{{item.y+'rpx'}};--bg:{{item.value==0?'':'#ab4008'}}" bindtap="clickBlock" data-index="{{index}}">{{item.value}}</view>
+  <button class="btn-start" bindtap="startGame">重新开始</button>
+  <view class="win-text">{{gameover?'恭喜获胜':''}}</view>
+  <view>步数:{{step}}</view>
+</view>

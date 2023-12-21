@@ -1,0 +1,4 @@
+<!--components/test1/index.wxml-->
+<text>父组件传过来的title----{{title}}</text>
+<text>父组件传过来的count----{{count}}</text>
+<button bindtap="addNum">点击+1</button>

@@ -1,0 +1,4 @@
+<view>
+  <image src="../../static/image/logo.jpg" class="logo" mode="widthFix" />
+  <view class="welcome-text">欢迎您!</view>
+</view>

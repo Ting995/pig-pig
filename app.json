@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/index",
+    "packages/ELSFK/index"
+  ],
+  "subPackages": [
+    {
+      "root": "packages/DDS",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "root": "packages/SZHRD",
+      "pages": [
+        "index"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#efefef"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/image/home_def.png",
+        "selectedIconPath": "static/image/home.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "static/image/my_def.png",
+        "selectedIconPath": "static/image/my.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+.logo {
+  width: 564rpx;
+  height: 564rpx;
+  margin: 0 auto;
+  display: block;
+}
+
+.welcome-text {
+  text-align: center;
+  margin-top: 40rpx;
+}

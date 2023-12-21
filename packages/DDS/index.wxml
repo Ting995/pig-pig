@@ -1,0 +1,14 @@
+<view class="main">
+  <view class="game-area">
+    <view wx:for="{{holes}}" wx:key="index" class="hole-box" style="--left:{{item.x+'rpx'}};--top:{{item.y+'rpx'}}">
+      <view class="hole">
+        <image src="../../static/image/cat-2.png" class="{{item.active?'active-cat':'cat'}}" mode="widthFix" bindtap="hit" data-index="{{index}}" />
+      </view>
+    </view>
+
+  </view>
+  <button bindtap="tapStart" class="start">开始</button>
+  <button class="reset" bindtap="initHoles">重置</button>
+</view>
+<view>倒计时：{{countDown}}s</view>
+<view>得分：{{score}}分</view>
