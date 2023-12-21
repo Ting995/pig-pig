@@ -5,7 +5,7 @@ Page({
   },
   onLoad() {},
   goDetail(e) {
-    let type=e.target.dataset.type
+    let type = e.target.dataset.type
     switch (type) {
       case 'huarongdao':
         wx.navigateTo({
@@ -17,11 +17,16 @@ Page({
           url: `/packages/DDS/index`
         })
         break;
-        case 'elsfk':
-          wx.navigateTo({
-            url: `/packages/ELSFK/index`
-          })
-          break;
+      case 'elsfk':
+        wx.navigateTo({
+          url: `/packages/ELSFK/index`
+        })
+        break;
+      case 'csz':
+        wx.navigateTo({
+          url: `/packages/CSZ/index`,
+        })
+        break;
     }
   },
   onShareAppMessage: function () {

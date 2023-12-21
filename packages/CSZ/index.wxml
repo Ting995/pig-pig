@@ -1,0 +1,12 @@
+<view>
+  <view class="game-area">
+    <view wx:for="{{countList}}" wx:key="index" class="{{cardIndex==index?'card-rotated':''}} card-front" bindtap="rotatedCard" data-index="{{index}}" data-item="{{item}}">
+      <view wx:if="{{index==cardIndex&&showCardBack}}" class="card-back">{{item}}</view>
+    </view>
+  </view>
+  <view class="randomCount">找到数字{{randomCount}}</view>
+  <button class="mt20" type="primary" bindtap="start">开始</button>
+  <button class="mt20" bindtap="initConut">重置</button>
+  <view class="mt20">得分：{{score}}分</view>
+  <view class="mt20">倒计时：{{countDown}}s</view>
+</view>
