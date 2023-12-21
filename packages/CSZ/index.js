@@ -7,7 +7,8 @@ Page({
     score: 0,
     timer: null,
     gameover: false,
-    randomCount: null
+    randomCount: null,
+    playFalg:false
   },
   onLoad() {
     this.initConut()
@@ -26,12 +27,15 @@ Page({
   },
   start() {
     this.setData({
+      playFalg:true,
       countList: this.data.countList.sort(() => Math.random() - 0.5)
     })
+    getApp().showToast('游戏开始')
     this.startCountDown()
   },
   // 翻开
   rotatedCard(e) {
+    if(!this.data.playFalg) return
     const that = this
     if (this.data.gameover) return
     this.setData({
@@ -59,6 +63,10 @@ Page({
           })
         } else {
           getApp().showToast('哦吼，没猜中，再试一次吧！')
+          let randomNumber = Math.floor(Math.random() * 6) + 1
+          this.setData({
+            randomCount: randomNumber
+          })
         }
       })
     }, 200)
