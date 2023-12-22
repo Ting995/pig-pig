@@ -8,7 +8,7 @@
                 data-info="{{item}}"
                 data-allIndex="{{allIndex}}"
                 data-index="{{chIndex}}"
-                data-width="{{item.sum*80}}" style="width: {{item.sum*80}}rpx;left:{{item.left*80}}rpx;" bindlongtap="onDragStart" bindtouchmove="onDragMove" bindtouchend="onDragEnd"
+                data-width="{{item.sum*80}}" style="width: {{item.sum*80}}rpx;left:{{item.left*80}}rpx;" bindtouchstart="onDragStart" bindtouchmove="onDragMove" bindtouchend="onDragEnd"
             ></view>
             <view wx:if="{{dragInfo.sum!=0&&allIndex==dragInfo.allindex}}" class="{{'fk-content-item color-'+dragInfo.color}}" style="width: {{dragInfo.sum*80}}rpx;left:{{dragInfo.left*80}}rpx;opacity: .5;"></view>
         </view>
