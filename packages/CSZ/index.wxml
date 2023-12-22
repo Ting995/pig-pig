@@ -9,4 +9,5 @@
   <button class="mt20" bindtap="initConut">重置</button>
   <view class="mt20">得分：{{score}}分</view>
   <view class="mt20">倒计时：{{countDown}}s</view>
+  
 </view>
