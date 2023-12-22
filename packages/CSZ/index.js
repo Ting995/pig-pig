@@ -8,26 +8,40 @@ Page({
     timer: null,
     gameover: false,
     randomCount: null,
-    playFalg:false
+    playFalg: false,
+    startTimer: null
   },
   onLoad() {
     this.initConut()
   },
   initConut() {
+    clearTimeout(this.data.startTimer)
+    clearTimeout(this.data.timer)
     let countList = []
     for (let i = 1; i <= 6; i++) {
       countList.push(i)
     }
-    let randomNumber = Math.floor(Math.random() * 6) + 1
+    this.getRandomCount()
     this.setData({
       countList: countList.sort(() => Math.random() - 0.5),
-      randomCount: randomNumber,
-      showCardBack: false
+      showCardBack: false,
+      countDown: 10,
+      score:0,
+      playFalg: false,
+      gameover:false
+    })
+  },
+  getRandomCount() {
+    let randomNumber = Math.floor(Math.random() * 6) + 1
+    this.setData({
+      randomCount: randomNumber
     })
   },
   start() {
+    this.getRandomCount()
     this.setData({
-      playFalg:true,
+      countDown: 10,
+      playFalg: true,
       countList: this.data.countList.sort(() => Math.random() - 0.5)
     })
     getApp().showToast('游戏开始')
@@ -35,7 +49,7 @@ Page({
   },
   // 翻开
   rotatedCard(e) {
-    if(!this.data.playFalg) return
+    if (!this.data.playFalg) return
     const that = this
     if (this.data.gameover) return
     this.setData({
@@ -57,25 +71,17 @@ Page({
           that.setData({
             score: this.data.score += 1
           })
-          let randomNumber = Math.floor(Math.random() * 6) + 1
-          this.setData({
-            randomCount: randomNumber
-          })
+          that.getRandomCount()
         } else {
           getApp().showToast('哦吼，没猜中，再试一次吧！')
-          let randomNumber = Math.floor(Math.random() * 6) + 1
-          this.setData({
-            randomCount: randomNumber
-          })
         }
       })
     }, 200)
-
   },
   startCountDown() {
     // 启动倒计时
     this.setData({
-      timer: setTimeout(() => {
+      timer: setInterval(() => {
         let countDown = this.data.countDown;
         if (countDown > 0) {
           countDown--;
