@@ -56,6 +56,11 @@ view{
     background: yellow;
     box-shadow: 0 0 20rpx inset rgb(148, 148, 0);
 }
+.color-tran{
+    border: 1px solid transparent;
+    background: transparent;
+    box-shadow: 0 0 20rpx inset transparent;
+}
 .color-kong{
     background: transparent;
 }

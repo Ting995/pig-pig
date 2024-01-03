@@ -1,10 +1,10 @@
 <!-- 俄罗斯方块 -->
-<view class="text-center h40">俄罗斯方块</view>
+<view class="text-center h40">俄罗斯方块-平移版</view>
 <view class="fk-main">
     <view class="fk-content" style="top: {{positionTop}}rpx;">
         <view wx:for="{{allArr}}" wx:for-item="allItem" wx:for-index="allIndex" wx:key="allIndex" class="fk-content-line">
             <view
-                wx:for="{{allItem.oneList}}"  wx:for-index="chIndex" wx:key="chIndex" wx:if="{{item.sum!=0}}" class="{{'fk-content-item color-'+item.color}}" 
+                wx:for="{{allItem.oneList}}"  wx:for-index="chIndex" wx:key="chIndex" wx:if="{{item.sum!=0}}" class="{{'fk-content-item color-'+item.color||'tran'}}" 
                 data-info="{{item}}"
                 data-allIndex="{{allIndex}}"
                 data-index="{{chIndex}}"

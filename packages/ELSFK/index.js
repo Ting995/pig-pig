@@ -13,22 +13,56 @@ Page({
                 oneList:[
                     {
                         left:0,
-                        sum:1,
+                        sum:2,
                         color:'green'
                     },
                     {   
                         sum:0,
-                        left:1,
+                        left:2,
                     },
                     {   
-                        left:2,
-                        sum:2,
+                        left:3,
+                        sum:1,
                         color:'blue',
                     },
                     {   
                         left:4,
                         sum:1,
                         color:'red',
+                    },
+                    {   
+                        sum:0,
+                        left:5,
+                    },
+                    {   
+                        left:6,
+                        sum:2,
+                        color:'red',
+                    },
+                ]
+            },{
+                oneList:[
+                    {
+                        left:0,
+                        sum:0,
+                    },
+                    {
+                        left:1,
+                        sum:0,
+                    },
+                    {   
+                        sum:1,
+                        left:2,
+                        color:'red',
+                    },
+                    {   
+                        left:3,
+                        sum:1,
+                        color:'blue',
+                    },
+                    {   
+                        left:4,
+                        sum:0,
                     },
                     {   
                         sum:0,
@@ -86,13 +120,101 @@ Page({
             nowIndex:oldIndex+1,
             positionTop:oldTop-80
         })
+        this.checkFk()
         if(this.data.positionTop==0){
             this.gameoverFn()
         }
     },
-    // 检验方块是否会向下落：每次仅检验移动后新弹出的即可
-    checkFk(){},  
-    // 监听长按事件
+    // 检验方块是否会向下落
+    checkFk(){
+        console.log('开始检测');
+        let overFlag = false
+        for (let index = 1; index <= this.data.nowIndex; index++) {
+            console.log(`当前行数：${index}`);
+            const element = this.data.allArr[index];
+            const preElement = this.data.allArr[index-1];
+            let allFkArr = []
+            preElement.oneList.forEach((item,preI)=>{
+                if(item.sum!=0){
+                    allFkArr.push({
+                        index:preI,
+                        color:item.color,
+                        start:item.left,
+                        end:item.left+item.sum,
+                    })
+                }
+            })
+            let blankArr = []
+            element.oneList.forEach((item,elI)=>{
+                if(item.sum==0){
+                    if(blankArr.length==0){
+                        blankArr.push({
+                            index:elI,
+                            start:item.left,
+                            end:item.left+1,
+                        })
+                    }else if(blankArr[blankArr.length-1].end==item.left){
+                        blankArr[blankArr.length-1].end++
+                    }else{
+                        blankArr.push({
+                            index:elI,
+                            start:item.left,
+                            end:item.left+1,
+                        })
+                    }
+                }
+            })
+            let resetFlag = false
+            try {
+                console.log(blankArr,allFkArr);
+                allFkArr.forEach((item)=>{
+                    let blankObj = blankArr.filter(value=>{
+                        return value.start<=item.start&&value.end>=item.end
+                    })[0]
+                    console.log('执行到了',blankObj);
+                    if(blankObj){
+                        resetFlag = true
+                        let obj = this.data.allArr[index-1]
+                        let obj2 = this.data.allArr[index]
+                        let newBlankobj = []
+                        let newItemObj = {
+                            left:item.start,
+                            sum:item.end-item.start,
+                            color:item.color,
+                        }
+                        for (let itemI = item.start; itemI < item.end; itemI++) {
+                            newBlankobj.push({
+                                sum:0,
+                                left:itemI
+                            })
+                        }
+                        obj.oneList.splice(item.index,1,...newBlankobj)
+                        obj2.oneList.splice(blankObj.index, item.end-item.start,newItemObj)
+                        console.log(obj,obj2,'新数据');
+                        this.setData({
+                            ['allArr[' + (index-1) + ']']:obj,
+                            ['allArr[' + index + ']']:obj2,
+                        })
+                        throw Error();
+                    }
+                })
+            } catch (error) {
+            }
+            if(resetFlag){
+                overFlag = false
+                this.checkFk()
+            }else{
+                if(index==this.data.nowIndex){
+                    overFlag = true
+                }
+
+            }
+        }
+        if(overFlag){
+            console.log('执行结束');
+        }
+    },  
+    // 监听按下事件
     onDragStart(e) {
         const {left,sum,color} = e.currentTarget.dataset.info
         const allindex  = e.currentTarget.dataset.allindex
@@ -153,9 +275,21 @@ Page({
     onDragEnd(e) {
         if(this.data.isDragging){
             const {allindex,index,info} = e.currentTarget.dataset
-            this.setData({isDragging:false,dragInfo:{...this.data.defaultData.dragInfo},['allArr[' + allindex + '].oneList[' + index + '].left']:this.data.dragInfo.left})
             if(info.left!=this.data.dragInfo.left){
-                console.log('调用下一步');
+                let newList = this.data.allArr[allindex].oneList
+                let newLeft = newList[index].left
+                for (let i = newLeft; i < (newLeft+newList[index].sum); i++) {
+                    newList.push({
+                        sum:0,
+                        left:i
+                    })
+                }
+                newList[index].left = this.data.dragInfo.left
+                newList.splice(this.data.dragInfo.left,newList[index].sum)
+                newList.sort((a,b)=>a.left-b.left)
+                this.setData({isDragging:false,dragInfo:{...this.data.defaultData.dragInfo},['allArr[' + allindex + '].oneList']:newList})
+                this.checkFk()
+                this.moveUpFn()
             }
         }
     },
