@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/my/index",
     "packages/ELSFK/index",
-    "packages/CSZ/index"
+    "packages/CSZ/index",
+    "packages/HBY/index"
   ],
   "subPackages": [
     {

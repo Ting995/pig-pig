@@ -28,6 +28,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "packages/HBY/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

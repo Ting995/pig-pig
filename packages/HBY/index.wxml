@@ -1,0 +1,4 @@
+<view class="game-area" id="pp">
+  <view class="red-pack" ></view>
+  <view class="red-pack-1" >1</view>
+</view>
