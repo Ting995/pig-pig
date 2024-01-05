@@ -1,4 +1,7 @@
-<view class="game-area" id="pp">
-  <view class="red-pack" ></view>
-  <view class="red-pack-1" >1</view>
-</view>
+<view class="game-area" >
+  <view wx:for="{{redPackList}}" wx:key="index" class="red-pack" style="--left:{{item.left}}rpx" bindtap="getMoney" data-item="{{item}}"></view>
+</view>   
+<view>倒计时：{{countDown}}</view>
+<view>得分：{{score}}</view>
+<button bindtap="start" class="start mt20">开始</button>
+<button bindtap="reset" class="start mt20">重置</button>

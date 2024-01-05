@@ -8,14 +8,12 @@ Page({
     timer: null,
     gameover: false,
     randomCount: null,
-    playFalg: false,
-    startTimer: null
+    playFalg: false
   },
   onLoad() {
     this.initConut()
   },
   initConut() {
-    clearTimeout(this.data.startTimer)
     clearTimeout(this.data.timer)
     let countList = []
     for (let i = 1; i <= 6; i++) {

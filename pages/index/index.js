@@ -27,6 +27,11 @@ Page({
           url: `/packages/CSZ/index`,
         })
         break;
+        case 'hby':
+          wx.navigateTo({
+            url: `/packages/HBY/index`,
+          })
+          break;
     }
   },
   onShareAppMessage: function () {

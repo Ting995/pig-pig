@@ -3,4 +3,5 @@
   <button class="mt20" bindtap="goDetail" data-type="dadishu">打地鼠</button>
   <button class="mt20" bindtap="goDetail" data-type="elsfk">方块-平移版</button>
   <button class="mt20" bindtap="goDetail" data-type="csz">猜数字</button>
+  <button class="mt20" bindtap="goDetail" data-type="hby">红包雨</button>
 </view>
