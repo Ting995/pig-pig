@@ -4,7 +4,7 @@ Page({
     timer: null,
     countDown: 15,
     gameover: false,
-    score:0
+    score:0,
   },
   onLoad(options) {
 
